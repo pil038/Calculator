@@ -64,5 +64,3 @@ def api_calculate():
         return jsonify({'error': str(e)}), 400
     except Exception as e:
         return jsonify({'error': 'Internal server error'}), 500
-
-# ... фронтенд часть остается без изменений ...

@@ -1,4 +1,3 @@
-# app_backend.py - оставить только backend логику
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)

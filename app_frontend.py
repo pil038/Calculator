@@ -1,4 +1,3 @@
-# app_frontend.py - фронтенд с минимальным бэкендом
 from flask import Flask, render_template_string
 
 app = Flask(__name__)
