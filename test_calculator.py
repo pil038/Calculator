@@ -6,12 +6,11 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 try:
-    from app_api import app, calculate  # ← ИЗМЕНИТЬ здесь
+    from app_api import app, calculate
 except ImportError:
-    # Альтернативный способ импорта
     import importlib.util
 
-    spec = importlib.util.spec_from_file_location("app_api", "app_api.py")  # ← ИЗМЕНИТЬ здесь
+    spec = importlib.util.spec_from_file_location("app_api", "app_api.py")
     app_module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(app_module)
     app = app_module.app
@@ -47,13 +46,13 @@ class TestCalculator(unittest.TestCase):
 
     def test_calculate_division_by_zero(self):
         """Тест деления на ноль"""
-        result = calculate(5, 0, 'divide')
-        self.assertIsNone(result)
+        with self.assertRaises(ZeroDivisionError):
+            calculate(5, 0, 'divide')
 
     def test_calculate_invalid_operation(self):
         """Тест неверной операции"""
-        result = calculate(5, 3, 'invalid_op')
-        self.assertIsNone(result)
+        with self.assertRaises(ValueError):
+            calculate(5, 3, 'invalid_op')
 
     # Тесты API endpoints
     def test_api_addition(self):
@@ -110,7 +109,7 @@ class TestAPIStructure(unittest.TestCase):
 
     def test_api_endpoints_exist(self):
         """Проверяем, что API endpoints существуют в коде"""
-        with open('app_api.py', 'r', encoding='utf-8') as f:  # ← ИЗМЕНИТЬ здесь
+        with open('app_api.py', 'r', encoding='utf-8') as f:  # ← ИСПРАВЛЕНО
             content = f.read()
 
         # Проверяем наличие ключевых элементов
