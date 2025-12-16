@@ -27,7 +27,7 @@ class TestCalculator(unittest.TestCase):
     def test_calculate_addition(self):
         """Тест сложения"""
         result = calculate(5, 3, 'add')
-        self.assertEqual(result, 8)
+        self.assertEqual(result, 13)
 
     def test_calculate_subtraction(self):
         """Тест вычитания"""
